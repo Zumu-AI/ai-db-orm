@@ -171,7 +171,7 @@ class ChatResource(BaseOrganizationTable, table=True):
 class ChatMessage(BaseOrganizationTable, table=True):
     chat_id: uuid.UUID = Field(sa_type=UUIDString, primary_key=True)
     message_id: uuid.UUID = Field(sa_type=UUIDString, default_factory=uuid.uuid4, primary_key=True)
-    user_id: uuid.UUID | None = Field()
+    user_id: uuid.UUID | None = Field(sa_type=UUIDString)
     type: str
     content: str
     arguments: dict = Field(sa_column=Column(JSON))
