@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "ai-db-orm"
+version = "0.1.0"
+description = "Models and repos for spanner db used by ai services"
+authors = ["Nazareka <nazar.b@veido.com>"]
+readme = "README.md"
+packages = [{include = "ai_db_orm"}]
+
+[tool.poetry.dependencies]
+python = "3.11.10"
+pydantic = "2.9.2"
+sqlmodel = "^0.0.22"
+dotenv = "^0.0.5"
+google-cloud-spanner = "^3.50.1"
+google-cloud-secret-manager = "^2.21.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
