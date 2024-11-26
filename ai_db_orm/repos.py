@@ -5,7 +5,7 @@ from sqlalchemy import create_engine, Select, Engine
 from sqlmodel import Session, select, SQLModel
 from google.cloud.sqlalchemy_spanner import SpannerDialect
 
-from models import (
+from .models import (
     User,
     Organization,
     OrganizationUser,
@@ -22,7 +22,7 @@ from models import (
     ResourceType,
     Website,
 )
-from settings import db_settings
+from .settings import db_settings
 
 M = TypeVar("M", bound=SQLModel)
 

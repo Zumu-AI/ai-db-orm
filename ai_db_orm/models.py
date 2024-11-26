@@ -9,7 +9,7 @@ from typing import Optional
 import uuid
 from sqlalchemy.types import TypeDecorator, String
 
-from enums import ResourceType, ResourceStatus
+from .enums import ResourceType, ResourceStatus
 
 
 class UUIDString(TypeDecorator):
