@@ -127,6 +127,12 @@ class CollectionRepo(BaseRepo):
 
             return collection_resources
 
+    def get_collection(self, collection_id: uuid.UUID) -> Collection:
+        with Session(self.engine) as session:
+            statement: Select = select(Collection).where(Collection.collection_id == collection_id)
+            collection = session.exec(statement).first()
+            return collection
+
 
 class ResourceRepo(BaseRepo):
 
