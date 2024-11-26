@@ -19,6 +19,7 @@ class DBSettings(BaseSettings):
     SPANNER_MEETINGS_URL: Annotated[str, OnCloud]
     SPANNER_CHAT_URL: Annotated[str, OnCloud]
     SPANNER_WEBSITE_URL: Annotated[str, OnCloud]
+    SPANNER_ASSISTANT_URL: Annotated[str, OnCloud]
 
 
 def load_secrets(environ: str):

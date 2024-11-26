@@ -95,7 +95,7 @@ class File(BaseOrganizationTable, table=True):
 class Meeting(BaseOrganizationTable, table=True):
     meeting_id: uuid.UUID = Field(sa_type=UUIDString, default_factory=uuid.uuid4, primary_key=True)
     resource_id: uuid.UUID = Field(
-        sa_type=UUIDString,
+        sa_type=UUIDString
     )
     provider_meeting_id: str | None = None
     provider_meeting_password: str | None = None
@@ -105,7 +105,7 @@ class Meeting(BaseOrganizationTable, table=True):
     status_updated_at: datetime = Field(default_factory=datetime.now)
     transcriptions: str | None = None
     user_id: uuid.UUID = Field(
-        sa_type=UUIDString,
+        sa_type=UUIDString
     )
 
 
@@ -122,7 +122,7 @@ class MeetingRecording(BaseOrganizationTable, table=True):
     recording_id: uuid.UUID = Field(sa_type=UUIDString, default_factory=uuid.uuid4, primary_key=True)
     participant_id: uuid.UUID | None = Field()
     file_id: uuid.UUID = Field(
-        sa_type=UUIDString,
+        sa_type=UUIDString
     )
     type: str  # -- Specifies "audio" or "video".
     subtype: str  # -- Specifies the audio subtype: "mixed", "one-way", "share", "interpreter".
@@ -133,24 +133,27 @@ class MeetingRecording(BaseOrganizationTable, table=True):
 class Website(BaseOrganizationTable, table=True):
     website_id: uuid.UUID = Field(sa_type=UUIDString, default_factory=uuid.uuid4, primary_key=True)
     resource_id: uuid.UUID = Field(
-        sa_type=UUIDString,
+        sa_type=UUIDString
     )
     name: str
     url: str
     parsed_urls: str | None = None
     user_id: uuid.UUID | None = Field(
-        sa_type=UUIDString,
+        sa_type=UUIDString
     )
 
 
 class Chat(BaseOrganizationTable, table=True):
     chat_id: uuid.UUID = Field(sa_type=UUIDString, default_factory=uuid.uuid4, primary_key=True)
     owner_user_id: uuid.UUID = Field(
-        sa_type=UUIDString,
+        sa_type=UUIDString
     )
     type: str
     summary: Optional[str] = None
     name: str
+    assistant_id: uuid.UUID | None = Field(
+        sa_type=UUIDString
+    )
 
 
 class ChatCollection(BaseOrganizationTable, table=True):
@@ -176,3 +179,9 @@ class ChatMessage(BaseOrganizationTable, table=True):
     content: str
     arguments: dict = Field(sa_column=Column(JSON))
     is_summarized: bool = False
+
+class Assistant(BaseOrganizationTable, table=True):
+    assistant_id: uuid.UUID = Field(sa_type=UUIDString, default_factory=uuid.uuid4, primary_key=True)
+    purpose: str
+    instructions: str
+    ai_model: str

@@ -20,7 +20,7 @@ from .models import (
     MeetingRecording,
     ChatMessage,
     ResourceType,
-    Website,
+    Website, Assistant,
 )
 from .settings import db_settings
 
@@ -418,3 +418,16 @@ class ChatRepo(BaseRepo):
             chat_messages = session.exec(statement).all()
             chat_messages = list(reversed(chat_messages))
             return chat_messages
+
+
+class AssistantRepo(BaseRepo):
+
+    @property
+    def database_url(self) -> str:
+        return db_settings.SPANNER_ASSISTANT_URL
+
+    def get_assistant(self, assistant_id: uuid.UUID) -> Assistant:
+        with Session(self.engine) as session:
+            statement: Select = select(Assistant).where(Assistant.assistant_id == assistant_id)
+            assistant = session.exec(statement).first()
+            return assistant
