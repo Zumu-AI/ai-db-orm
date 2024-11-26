@@ -5,7 +5,7 @@ from sqlalchemy import create_engine, Select, Engine
 from sqlmodel import Session, select, SQLModel
 from google.cloud.sqlalchemy_spanner import SpannerDialect
 
-from db.models import (
+from models import (
     User,
     Organization,
     OrganizationUser,
