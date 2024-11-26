@@ -419,6 +419,15 @@ class ChatRepo(BaseRepo):
             chat_messages = list(reversed(chat_messages))
             return chat_messages
 
+    def add_assistant_to_chat(self, chat_id: uuid.UUID, assistant_id: uuid.UUID) -> Chat:
+        with Session(self.engine) as session:
+            statement: Select = select(Chat).where(Chat.chat_id == chat_id)
+            chat = session.exec(statement).first()
+            chat.assistant_id = assistant_id
+            session.add(chat)
+            session.commit()
+        return chat
+
 
 class AssistantRepo(BaseRepo):
 
