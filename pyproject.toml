@@ -10,7 +10,7 @@ packages = [{include = "ai_db_orm"}]
 python = "3.11.10"
 pydantic = "2.9.2"
 sqlmodel = "^0.0.22"
-dotenv = "^0.0.5"
+python-dotenv = "^1.0.1"
 google-cloud-spanner = "^3.50.1"
 google-cloud-secret-manager = "^2.21.1"
 
